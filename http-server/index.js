@@ -1,17 +1,37 @@
 const http =require("http")
 const fs=require('fs');
-const { time } = require("console");
+const { time, error } = require("console");
+
+const Url=require("url")
 
 const server = http.createServer((req,res)=>{
-    console.log("new request received");
+    console.log("new request received on " + req.url);
     const userIP = req.connection.remoteAddress;
 
-    const userdata = `user requested on: ${new Date()} \n from ${userIP}`;
+    const userdata = `user requested on: ${new Date()} from ${userIP} on ${req.url} \n`;
    
-
+    const myurl=Url.parse(req.url,true)
+    console.log(myurl)
 
     fs.appendFile('userlog.txt', userdata, (err,data)=>{
-        res.end("hello from server request fullfilled!")
+       switch(myurl.pathname) {
+         
+        case "/":
+            res.end("hello from server request fullfilled")
+            break
+        case "/about":
+            const ShowUserName=myurl.query.username
+            res.end(`hello ${ShowUserName}`)
+            break
+        
+
+
+       }
+
+       
+       
+       
+       
 
     });
 
