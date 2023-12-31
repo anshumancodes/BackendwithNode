@@ -8,7 +8,7 @@ const server = http.createServer((req,res)=>{
     console.log("new request received on " + req.url);
     const userIP = req.connection.remoteAddress;
 
-    const userdata = `user requested on: ${new Date()} from ${userIP} on ${req.url} \n`;
+    const userdata = `user made a ${req.method} request on : ${new Date()} from ${userIP} on ${req.url} \n`;
    
     const myurl=Url.parse(req.url,true)
     console.log(myurl)
