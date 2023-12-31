@@ -1,11 +1,40 @@
-const http =require("http")
-const fs=require('fs');
-const { time, error } = require("console");
+// const http =require("http")
+// const fs=require('fs');
+// const { time, error } = require("console");
 
-const Url=require("url")
+// const Url=require("url")
 
-const server = http.createServer((req,res)=>{
-    console.log("new request received on " + req.url);
+// lets build the server logic with express
+
+const express =require("express")
+
+const Myapp=express()
+
+Myapp.get("/",(req,res)=>{
+    return res.send("hello this is my app's home page")
+})
+
+
+Myapp.get("/about",(req,res)=>{
+    return res.send("hello " + req.query.username)
+})
+
+
+// express imports and uses http module in the hood to listen to the port
+Myapp.listen(8000,()=>{console.log("server started")})
+
+
+// const server = http.createServer(Myapp);
+
+// server.listen(8000,()=>{
+//     console.log("server started")
+// })
+
+
+
+// old code 
+
+/* console.log("new request received on " + req.url);
     const userIP = req.connection.remoteAddress;
 
     const userdata = `user made a ${req.method} request on : ${new Date()} from ${userIP} on ${req.url} \n`;
@@ -43,9 +72,4 @@ const server = http.createServer((req,res)=>{
 
     });
 
-   
-});
-
-server.listen(8000,()=>{
-    console.log("server started")
-})
+    */
