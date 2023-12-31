@@ -17,13 +17,21 @@ const server = http.createServer((req,res)=>{
        switch(myurl.pathname) {
          
         case "/":
-            res.end("hello from server request fullfilled")
+            if(req.method="GET") res.end("home page")
+            
             break
         case "/about":
             const ShowUserName=myurl.query.username
             res.end(`hello ${ShowUserName}`)
             break
-        
+        case "/reg":
+            if(req.method="GET") res.end("resgister form")
+
+            else if (req.method) {
+                // run db queries
+
+                res.end("sucessfully registered ")
+            }
 
 
        }
