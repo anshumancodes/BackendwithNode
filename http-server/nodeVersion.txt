@@ -1,0 +1,27 @@
+# understanding NodeJs Versioning 
+
+lets  understand it with a example
+
+
+lets take my Nodejs version that is 16.20.2 , Now this version have parts as you can see . To understand this lets breakdown these indivisually.
+-- first  part
+the last digit of V16.20.2 in this case 2  siginifies minor bug fixes and doesnt have much significance , you can update your nodejs to latest or can ignore it if the 
+last digit of the version is chnaged in changelog. 
+
+-- second part
+now lets go the 2nd part or digit of V16.20.2 that is 20 now this part of the nodejs Versioning siginifies some feature update ,Bug fixes or security updates so 
+Updating to the version on release is recommended
+
+-- 3rd part
+
+now we have the 3rd part of the version V16.20.2 that is 16 this siginifies major chnage also known as breaking update that means it can break code incase of version mismatch
+so its a must to update or use that version while working on application that uses a specific version
+
+
+Antoher thing in the Node.js versioning is the caret (^) is used in the package.json file to specify a range of compatible versions for a dependency. t indicates that you will accept any version that is compatible with the specified version, up to the next major version.
+example :^x.y.z: Allows versions from x.y.z up to, but not including, x+1.0.0.
+
+
+btw you can always check your node version by typing  ```node --version``` 
+
+
