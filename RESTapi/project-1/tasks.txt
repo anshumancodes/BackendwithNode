@@ -1,0 +1,13 @@
+1.on /users display all user data through a html document
+2.on /api/users display all user data through json
+3. Dynamic Path Parameters GET /api/users/:id
+and like for each user so their indivisual data on path
+
+4.POST/api/users -create new user
+5.PATCH/api/users -Edit user
+6.DELETE/api/users -Delete user
+
+
+
+
+
