@@ -1,24 +1,27 @@
-const { string } = require("i/lib/util");
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
 
-const urlSchema= new mongoose.Schema({
-    OriginalUrl:{
-        type:string,
-        required:true,
-
+const urlSchema = new mongoose.Schema(
+  {
+    OriginalUrl: {
+      type: String,
+      required: true,
     },
-    shortId:{
-        type:string,
-        required:true,
-        unique:true
-        
-    }
-    ,
-    visitHistory:[{timestamp:{
-        type:Number,
-    }}]
-},{timestamp:true})
+    shortId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    visitHistory: [
+      {
+        timestamp: {
+          type: Number,
+        },
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
-const URL=mongoose.model("url",urlSchema);
+const URL = mongoose.model("url", urlSchema);
 
-module.exports=URL;
+module.exports = URL;
