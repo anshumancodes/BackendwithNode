@@ -16,6 +16,9 @@ ConnectToMongodb("mongodb://127.0.0.1:27017/short-url")
 app.use(express.json());
 
 app.use("/url",urlroute);
+
+
+// redirects and updates timestamp of the click
 app.use('/:shortid',async (req,res) => {
     const shortId=req.params.shortid;
     const entry = await URL.findOneAndUpdate(
@@ -23,10 +26,11 @@ app.use('/:shortid',async (req,res) => {
         { $push: { visitHistory: { timestamp: Date.now() } } }
       );
 
-   res.redirect(entry.OriginalUrl);
+   res.redirect('https://' +entry.OriginalUrl);
 
     
 })
+
 
 
 app.listen(port, () => {
