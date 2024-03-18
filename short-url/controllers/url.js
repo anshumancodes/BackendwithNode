@@ -19,10 +19,24 @@ async function HandleGenerateShortUrl(req, res) {
     });
 
 
-    return res.json({id:ShortID});
+    // return res.json({id:ShortID});
+    return res.render("Home",{
+        id:ShortID
+    });
 
 
 
 }
+async function HandleClickanalytics(req,res){
 
-module.exports={HandleGenerateShortUrl}
+    const shortId=req.params.shortId;
+    
+    if(!shortId) return res.status(400).send({error:"You must provide a shortId to know coorseponding analytics"});
+    const clicks=await URL.findOne({ shortId });
+
+    return res.json({Total_clicks:clicks.visitHistory.length});
+
+
+}
+
+module.exports={HandleGenerateShortUrl,HandleClickanalytics}
