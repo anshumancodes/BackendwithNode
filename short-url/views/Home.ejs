@@ -46,14 +46,20 @@
       background-color: #1b1e23;
       color: #fff;
     }
+    #blueurl {
+      color: rgb(67, 67, 235);
+
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>ShortURL</h1>
     <p>Simplify Your Links with ShortURL - The easiest way to shorten your long URLs.</p>
-    <p>your short url is  : <span id="shortUrl"></span></p>
-    <form action="POST" action="/url">
+    <% if (locals.id) { %>
+      <p>Your short URL is: <a href="localhost:8000/url/<%=id%>" id="blueurl">localhost:8000/url/<%= id %></a></p>
+    <% } %>
+    <form method="POST" action="/url">
        <input type="text" placeholder="enter long url" name="url" style="padding: 10px 20px; color: grey; outline: none; font-size: 1.1rem;">
        <input type="submit" value="create short url" style="padding: 10px 7px; color:white; background-color:rgb(63, 63, 255); outline:none; border: none; font-size: 1.1rem;">
        
