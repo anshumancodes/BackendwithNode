@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShortURL - Simplify Your Links</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #1b1e23, #2a2d34);
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #1b1e23;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #1b1e23;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ShortURL</h1>
+    <p>Simplify Your Links with ShortURL - The easiest way to shorten your long URLs.</p>
+    <p>your short url is  : <span id="shortUrl"></span></p>
+    <form action="POST" action="/url">
+       <input type="text" placeholder="enter long url" name="url" style="padding: 10px 20px; color: grey; outline: none; font-size: 1.1rem;">
+       <input type="submit" value="create short url" style="padding: 10px 7px; color:white; background-color:rgb(63, 63, 255); outline:none; border: none; font-size: 1.1rem;">
+       
+    </form>
+
+  </div>
+</body>
+</html>
