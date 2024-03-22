@@ -1,11 +1,16 @@
 const express = require("express");
+const cookieParser=require("cookie-parser")
 const app = express();
 const port = 8000;
-const urlroute=require("./routes/url")
-const StaticRouter=require('./routes/staticRouter');
+
 const {ConnectToMongodb}=require("./models/connect")
 const URL=require("./models/url")
 const path =require("path")
+
+// path registers
+const urlroute=require("./routes/url")
+const StaticRouter=require('./routes/staticRouter');
+const userRoute=require("./routes/user")
 
 // handleing views
 app.set('views', path.resolve("./views"));
@@ -22,11 +27,16 @@ ConnectToMongodb("mongodb://127.0.0.1:27017/short-url")
 
 
 //middlewares
+const {restrictToUserOnly,checkAuth}=require("./middlewares/auth")
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+app.use(cookieParser())
 
-app.use("/url",urlroute);
-app.use("/",StaticRouter);
+app.use("/url",restrictToUserOnly,urlroute);
+app.use("/user",userRoute);
+app.use("/",checkAuth,StaticRouter);
+
+
 
 
 
