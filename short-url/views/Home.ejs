@@ -10,7 +10,8 @@
       padding: 0;
       font-family: Arial, sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      
       align-items: center;
       height: 100vh;
       background: linear-gradient(to bottom right, #1b1e23, #2a2d34);
@@ -19,6 +20,7 @@
 
     .container {
       text-align: center;
+      margin-top: 20vh;
     }
 
     h1 {
@@ -50,10 +52,36 @@
       color: rgb(67, 67, 235);
 
     }
+    header{
+      width: 100%;
+      display: flex;
+
+      justify-content: center;
+      padding:2vh 0 2vh 0;
+    }
+    nav{
+      display: flex;
+      width: 80%;
+      justify-content: space-between;
+    }
   </style>
 </head>
-<body>
+<body >
+  <header>
+    <nav >
+      <span style="font-size: medium; font-weight: 800;"> ShortURL</span>
+      
+      <span style="display: flex; gap: 2vw;">
+
+        <a href="/signup"><button style="padding: 1vh 2vw; background:rgb(255, 255, 110); outline: 0; border: 0;">signup</button></a>
+        <a href="/login"><button style="padding: 1vh 2vw; background-color: rgb(95, 231, 95); outline: 0; border: 0;">login</button></a>
+      </span>
+
+
+    </nav>
+  </header>
   <div class="container">
+ 
     <h1>ShortURL</h1>
     <p>Simplify Your Links with ShortURL - The easiest way to shorten your long URLs.</p>
     <% if (locals.id) { %>
@@ -65,6 +93,29 @@
        
     </form>
 
+  </div>
+  <div style="margin-top: 30px">
+    <% if (locals.urls) { %>
+      <table style="border-collapse: collapse; width: 100%; text-align: center; margin-top: 20px;">
+        <thead style="background-color:yellow; color: #1b1e23;">
+          <th style="padding: 10px;">S. No</th>
+          <th style="padding: 10px;">ShortID</th>
+          <th style="padding: 10px;">Redirect</th>
+          <th style="padding: 10px;">Clicks</th>
+        </thead>
+        <tbody>
+          <% urls.forEach((url, index) => { %>
+          <tr style="background-color:#fff; color: black;">
+            <td style="padding: 10px;"><%= index + 1 %></td>
+            <td style="padding: 10px;"><%= url.shortId %></td>
+            <td style="padding: 10px;"><%= url.OriginalUrl %></td>
+            <td style="padding: 10px;"><%= url.visitHistory.length %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      
+    <% } %>
   </div>
 </body>
 </html>
