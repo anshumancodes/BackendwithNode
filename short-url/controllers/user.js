@@ -16,6 +16,7 @@ async function HandleSignup (req,res){
 async function HandleLogin (req,res){
     const {name,email,password}=req.body;
 
+    //checks if user already exist in db or not
    const isuser= await user.findOne({
         
         email,
@@ -23,9 +24,9 @@ async function HandleLogin (req,res){
     });
     if(!isuser)return res.send("no such account found");
 
-    const sessionid=uuidv4();
-    setUser(sessionid,isuser);
-    res.cookie("cookieID",sessionid);
+   
+    const jwttoken=setUser(isuser);
+    res.cookie("cookieID",jwttoken);
 
     return res.render("Home");
 }
