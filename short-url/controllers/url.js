@@ -16,6 +16,7 @@ async function HandleGenerateShortUrl(req, res) {
         shortId: ShortID,
         OriginalUrl:body.url,
         visitHistory:[],
+        createdBy:req.user._id,
     });
 
 
